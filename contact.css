@@ -78,7 +78,7 @@ header img {
 }
 
 .cart-button {
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   background-color: #c9184a;
   color: #fff;
   border: none;
@@ -87,18 +87,18 @@ header img {
 
 .empty-cart {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 .shop-button {
   background-color: #c9184a;
   color: #ffffff;
   border: none;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   text-decoration: none;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .shop-button:hover {
@@ -108,9 +108,9 @@ header img {
   background-color: #28a745;
   color: #fff;
   border: none;
-  padding: 6px;
+  padding: 0.375rem;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
   display: inline-block;
   text-align: center;
@@ -129,8 +129,8 @@ header img {
   background-color: #fff;
   color: #c9184a;
   border-radius: 50%;
-  padding: 5px 10px;
-  margin-left: 10px;
+  padding: 0.3125rem 0.625rem;
+  margin-left: 0.625rem;
 }
 
 .overlay {
@@ -150,11 +150,11 @@ header img {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 300px;
+  width: 18.75rem;
   height: 100%;
   background-color: #fff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  box-shadow: -0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+  padding: 1.25rem;
   overflow-y: auto;
   transition: right 0.3s ease;
   z-index: 20;
@@ -173,7 +173,7 @@ header img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .cart-header h2 {
@@ -184,7 +184,7 @@ header img {
   background-color: #c9184a;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
   cursor: pointer;
 }
 
@@ -197,21 +197,21 @@ header img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 0.625rem 0;
 }
 
 .cart img {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   object-fit: cover;
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 
 .cart button {
   background-color: #c9184a;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
   cursor: pointer;
 }
 
@@ -221,12 +221,12 @@ header img {
 
 .quantity-buttons {
   display: flex;
-  gap: 5px;
+  gap: 0.3125rem;
 }
 
 .quantity-buttons button {
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   background-color: #c9184a;
   color: #fff;
   border: none;
@@ -245,9 +245,9 @@ header img {
   background-color: #28a745;
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 0.625rem;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
 }
 
@@ -259,9 +259,9 @@ header img {
   background-color: #28a745;
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 0.625rem;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
   display: inline-block;
   text-align: center;
@@ -351,7 +351,7 @@ nav ul {
   display: flex;
   flex-direction: row;
   gap: 2rem;
-
+  width: 100%;
   & h1 {
     font-size: 2.5rem;
   }
@@ -370,28 +370,28 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
-
+  width: 100%;
   & input {
-    width: 600px;
-    height: 40px;
+    width: 37.5rem;
+    height: 2.5rem;
     outline: none;
     border: none;
-    border-bottom: 2px solid #4a4a4a;
+    border-bottom: 0.125rem solid #4a4a4a;
     background: var(--background);
   }
 
   & textarea {
-    width: 600px;
-    height: 100px;
+    width: 37.5rem;
+    height: 6.25rem;
     outline: none;
     border: none;
-    border-bottom: 2px solid #4a4a4a;
+    border-bottom: 0.125rem solid #4a4a4a;
     background: var(--background);
   }
 
   & button {
     display: inline-block;
-    height: 40px;
+    height: 2.5rem;
     background-color: var(--accent);
     border: none;
     color: var(--text);
@@ -443,15 +443,6 @@ form {
   padding: 1rem;
 }
 
-.article-1 input {
-  width: 40.625rem;
-  height: 3.125rem;
-  outline: none;
-  border: none;
-  border-bottom: 0.125rem solid var(--text);
-  background-color: inherit;
-}
-
 .article-1 button {
   display: flex;
   justify-content: center;
@@ -472,7 +463,7 @@ form {
 
 .article-1 h1 {
   font-size: 2.5rem;
-  width: 37.5rem;
+  width: 100%;
   text-align: center;
 }
 
@@ -504,7 +495,7 @@ form {
 .section-3 .article-2,
 .section-3 .article-3 {
   width: 100%;
-  padding: 100px;
+  padding: 6.25rem;
   transition: 0.2s;
 }
 
@@ -658,6 +649,15 @@ footer {
 }
 
 @media (min-width: 20rem) {
+  .split-2 {
+    flex-direction: column;
+  }
+
+  input,
+  textarea {
+    width: 100% !important;
+  }
+
   .h-text {
     font-size: 3rem;
   }
@@ -678,18 +678,6 @@ footer {
     }
     & h1 {
       font-size: 1.75rem;
-    }
-  }
-
-  .article-1 {
-    width: 100%;
-    & h1 {
-      font-size: 1rem;
-      width: 18.75rem;
-    }
-
-    & input {
-      width: 18.75rem;
     }
   }
 
@@ -751,6 +739,8 @@ footer {
   .navLinks ul {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 3.75rem;
     right: 0;
@@ -775,6 +765,13 @@ footer {
   }
 }
 @media (min-width: 48rem) {
+  .split-2 {
+    flex-direction: row;
+  }
+  input,
+  textarea {
+    width: 21.875rem !important;
+  }
   .h-text {
     font-size: 6.8rem;
   }
@@ -795,18 +792,6 @@ footer {
     }
     & h1 {
       font-size: 1.75rem;
-    }
-  }
-
-  .article-1 {
-    width: 100%;
-    & h1 {
-      font-size: 1rem;
-      width: 18.75rem;
-    }
-
-    & input {
-      width: 31.25rem;
     }
   }
 
@@ -843,6 +828,10 @@ footer {
   }
 }
 @media (min-width: 64rem) {
+  input,
+  textarea {
+    width: 37.5rem !important;
+  }
   .h-text {
     font-size: 10rem;
   }
@@ -869,18 +858,6 @@ footer {
     & h2 {
       font-size: 2rem;
       margin-top: 4rem;
-    }
-  }
-
-  .article-1 {
-    width: 100%;
-    & h1 {
-      font-size: 3rem;
-      width: 43.75rem;
-    }
-
-    & input {
-      width: 50rem;
     }
   }
 

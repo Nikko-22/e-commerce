@@ -12,22 +12,19 @@ function addToCart(productName, productPrice, productImage) {
       quantity: 1,
     });
   }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
-  updateCartCount();
 }
 
 function removeFromCart(index) {
   cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
-  updateCartCount();
 }
 
 function increaseQuantity(index) {
   cart[index].quantity++;
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
 }
 
@@ -37,8 +34,12 @@ function decreaseQuantity(index) {
   } else {
     cart.splice(index, 1);
   }
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
+}
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
 }
 
@@ -64,25 +65,27 @@ function updateCartDisplay() {
     cart.forEach((item, index) => {
       const li = document.createElement("li");
       li.innerHTML = `
-          <img src="${item.image}" alt="${
+        <img src="${item.image}" alt="${
         item.name
-      }" style="width: 50px; height: 50px; object-fit: cover;">
-          ${item.name} - $${item.price.toFixed(2)}
-          <div class="quantity-buttons">
-            <button onclick="decreaseQuantity(${index})">-</button>
-            <span>${item.quantity}</span>
-            <button onclick="increaseQuantity(${index})">+</button>
-          </div>
-          <button onclick="removeFromCart(${index})" style="padding:6px 10px; margin:10px 0; background:#c9184a; border:none; color:#fff; cursor:pointer; transition:background-color 0.3s ease;">Remove</button>
-        `;
+      }" style="width: 100%; height: 100%; object-fit: cover;">
+        ${item.name} - $${item.price.toFixed(2)}
+        <div class="quantity-buttons">
+          <button onclick="decreaseQuantity(${index})">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="increaseQuantity(${index})">+</button>
+        </div>
+        <button onclick="removeFromCart(${index})" style="padding:6px 10px; margin:10px 0; background:#c9184a; border:none; color:#fff; cursor:pointer; transition:background-color 0.3s ease;">Remove</button>
+      `;
       cartItemsContainer.appendChild(li);
       total += item.price * item.quantity;
     });
   }
 
   cartTotalContainer.textContent = total.toFixed(2);
+  addHoverEffect();
+}
 
-  // Add hover effect
+function addHoverEffect() {
   const removeButtons = document.querySelectorAll(
     'button[onclick^="removeFromCart"]'
   );
@@ -129,11 +132,28 @@ document.addEventListener("click", (event) => {
   if (
     overlay.classList.contains("show") &&
     !cartSidebar.contains(event.target) &&
-    event.target.id !== "cart-sidebar" &&
-    event.target.className !== "cart-button"
+    !event.target.closest(".cart-button")
   ) {
     toggleCart();
   }
+});
+
+// Ensure icon and span inside the cart button trigger the same function
+document.querySelector(".cart-button").addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleCart();
+});
+
+document
+  .querySelector(".fa-cart-shopping")
+  .addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleCart();
+  });
+
+document.querySelector("#cart-count").addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleCart();
 });
 
 updateCartDisplay();

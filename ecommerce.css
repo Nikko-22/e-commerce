@@ -77,7 +77,7 @@ header img {
 }
 
 .cart-button {
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   background-color: #c9184a;
   color: #fff;
   border: none;
@@ -86,18 +86,18 @@ header img {
 
 .empty-cart {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 .shop-button {
   background-color: #c9184a;
   color: #ffffff;
   border: none;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   text-decoration: none;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .shop-button:hover {
@@ -107,9 +107,9 @@ header img {
   background-color: #28a745;
   color: #fff;
   border: none;
-  padding: 6px;
+  padding: 0.375rem;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
   display: inline-block;
   text-align: center;
@@ -128,8 +128,8 @@ header img {
   background-color: #fff;
   color: #c9184a;
   border-radius: 50%;
-  padding: 5px 10px;
-  margin-left: 10px;
+  padding: 0.3125rem 0.625rem;
+  margin-left: 0.625rem;
 }
 
 .overlay {
@@ -149,11 +149,11 @@ header img {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 300px;
+  width: 18.75rem;
   height: 100%;
   background-color: #fff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  box-shadow: -0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+  padding: 1.25rem;
   overflow-y: auto;
   transition: right 0.3s ease;
   z-index: 20;
@@ -172,7 +172,7 @@ header img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .cart-header h2 {
@@ -183,7 +183,7 @@ header img {
   background-color: #c9184a;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
   cursor: pointer;
 }
 
@@ -196,21 +196,21 @@ header img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 0.625rem 0;
 }
 
 .cart img {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   object-fit: cover;
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 
 .cart button {
   background-color: #c9184a;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
   cursor: pointer;
 }
 
@@ -220,12 +220,12 @@ header img {
 
 .quantity-buttons {
   display: flex;
-  gap: 5px;
+  gap: 0.3125rem;
 }
 
 .quantity-buttons button {
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   background-color: #c9184a;
   color: #fff;
   border: none;
@@ -244,9 +244,9 @@ header img {
   background-color: #28a745;
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 0.625rem;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
 }
 
@@ -258,9 +258,9 @@ header img {
   background-color: #28a745;
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 0.625rem;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
   display: inline-block;
   text-align: center;
@@ -306,7 +306,7 @@ nav ul {
   position: relative;
   background-color: var(--background-color);
   color: var(--text);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .section-1 picture {
@@ -459,7 +459,7 @@ nav ul {
 .section-3 .article-2,
 .section-3 .article-3 {
   width: 100%;
-  padding: 100px;
+  padding: 6.25rem;
   transition: 0.2s;
 }
 
@@ -700,6 +700,8 @@ footer {
   .navLinks ul {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 3.75rem;
     right: 0;
@@ -792,6 +794,80 @@ footer {
   }
 }
 @media (min-width: 64rem) {
+  .h-text {
+    font-size: 10rem;
+  }
+
+  .float {
+    width: 11.5rem;
+    height: 11.5rem;
+
+    & h1 {
+      font-size: x-large;
+    }
+  }
+
+  .section-1 {
+    & img {
+      width: 31.25rem;
+      height: 28.125rem;
+    }
+    & h1 {
+      font-size: 2.75rem;
+      margin-top: 4rem;
+    }
+
+    & h2 {
+      font-size: 2rem;
+      margin-top: 4rem;
+    }
+  }
+
+  .article-1 {
+    width: 100%;
+    & h1 {
+      font-size: 3rem;
+      width: 43.75rem;
+    }
+
+    & input {
+      width: 50rem;
+    }
+  }
+
+  .section-3 {
+    & h1 {
+      font-size: 3rem;
+      width: 43.75rem;
+    }
+
+    .split {
+      flex-direction: row;
+    }
+
+    .article-2,
+    .article-3 {
+      width: 100%;
+
+      & h2 {
+        width: 18.75rem;
+      }
+    }
+  }
+
+  .section-4 {
+    .comment {
+      width: 100%;
+    }
+
+    .article-4 {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0.625rem;
+    }
+  }
+}
+
+@media (min-width: 90rem) {
   .h-text {
     font-size: 10rem;
   }
