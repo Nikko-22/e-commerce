@@ -108,5 +108,19 @@ function checkout() {
   window.location.href = "checkout.html";
 }
 
+// Close the cart sidebar when clicking outside of it
+document.addEventListener('click', event => {
+  const cartSidebar = document.getElementById('cart-sidebar');
+  const overlay = document.getElementById('overlay');
+
+  if (
+    overlay.classList.contains('show') &&
+    !cartSidebar.contains(event.target) &&
+    !event.target.closest('.cart-button')
+  ) {
+    toggleCart();
+  }
+});
+
 updateCartDisplay();
 updateCartCount();
