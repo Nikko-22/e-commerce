@@ -1,0 +1,410 @@
+:root {
+  --accent: #c9184a;
+  --text: #ffffff;
+  --background: #000;
+  --background-color: #1c1c1c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Jost", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+header {
+  background: url("images/black-370118_1920.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1.25rem;
+}
+
+header img {
+  width: 100%;
+}
+
+.h-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+  font-size: 12rem;
+  margin: 0;
+}
+
+.h-1 {
+  margin-top: 6rem;
+  position: relative;
+}
+
+.navLink-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.625rem;
+  color: var(--text);
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.625rem;
+  color: var(--text);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.section-1 {
+  display: grid;
+  width: 100%;
+  padding: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 2rem;
+  background-color: #1c1c1c;
+  color: var(--text);
+
+  & span {
+    text-decoration: line-through 2px;
+  }
+
+  & article {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+    width: 100%;
+    height: fit-content;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+  }
+
+  & button {
+    padding: 10px;
+    border: none;
+    background-color: var(--accent);
+    color: var(--text);
+    margin-top: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ba7085;
+    }
+  }
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cart-button {
+  padding: 10px 20px;
+  background-color: #c9184a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 20px;
+}
+.shop-button {
+  background-color: #c9184a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.shop-button:hover {
+  background-color: #a81942;
+}
+.cart-2 {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.cart-2:hover {
+  background-color: #218838;
+}
+
+#cart-items {
+  list-style: none;
+}
+
+.cart-button span {
+  background-color: #fff;
+  color: #c9184a;
+  border-radius: 50%;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 20;
+}
+
+.cart-sidebar.open {
+  right: 0;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cart-header h2 {
+  margin: 0;
+}
+
+.close-cart {
+  background-color: #c9184a;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.cart img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.cart button {
+  background-color: #c9184a;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.cart button:hover {
+  background-color: #a81942;
+}
+
+.quantity-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.quantity-buttons button {
+  width: 30px;
+  height: 30px;
+  background-color: #c9184a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.quantity-buttons button:hover {
+  background-color: #a81942;
+}
+
+.cart p {
+  font-weight: bold;
+}
+
+.checkout-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.checkout-button:hover {
+  background-color: #218838;
+}
+
+.checkout-button2 {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.checkout-button2:hover {
+  background-color: #218838;
+}
+
+.burger-menu span {
+  display: none;
+  width: 2.5rem;
+  height: 0.1875rem;
+  background-color: var(--accent);
+  color: var(--accent);
+}
+
+.burger-menu {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  color: var(--text);
+  height: 6.25rem;
+  padding: 1rem;
+
+  & p {
+    text-wrap: nowrap;
+  }
+}
+
+@media (min-width: 20rem) {
+  footer {
+    flex-direction: column;
+  }
+  .h-text {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 48rem) {
+  .burgerMenu span {
+    width: 2.5rem;
+    height: 0.1875rem;
+    background-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .burgerMenu {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.625rem;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .navLinks ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 3.75rem;
+    right: 0;
+    background-color: var(--accent);
+    width: 100%;
+    height: 25rem;
+    padding: 1.25rem;
+  }
+
+  .navLinks.active ul {
+    display: flex;
+  }
+
+  .navLinks ul {
+    flex-direction: column;
+    color: var(--background-color);
+    z-index: 1;
+  }
+
+  .navLinks a {
+    color: var(--background-color);
+  }
+}
+@media (min-width: 48rem) {
+  .h-text {
+    font-size: 6.8rem;
+  }
+}
+@media (min-width: 64rem) {
+  .h-text {
+    font-size: 10rem;
+  }
+}

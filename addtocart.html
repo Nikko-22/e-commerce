@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart Sidebar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <style>
+    .cart-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #c9184a;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cart-button span {
+      background-color: #fff;
+      color: #c9184a;
+      border-radius: 50%;
+      padding: 5px 10px;
+      margin-left: 10px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 300px;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      overflow-y: auto;
+      transition: right 0.3s ease;
+      z-index: 20;
+    }
+
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .cart-header h2 {
+      margin: 0;
+    }
+
+    .close-cart {
+      background-color: #c9184a;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .cart ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cart li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .cart img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+
+    .cart button {
+      background-color: #c9184a;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .cart button:hover {
+      background-color: #a81942;
+    }
+
+    .quantity-buttons {
+      display: flex;
+      gap: 5px;
+    }
+
+    .quantity-buttons button {
+      width: 30px;
+      height: 30px;
+      background-color: #c9184a;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .quantity-buttons button:hover {
+      background-color: #a81942;
+    }
+
+    .cart p {
+      font-weight: bold;
+    }
+
+    .checkout-button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .checkout-button:hover {
+      background-color: #218838;
+    }
+
+    .empty-cart {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .shop-button {
+      background-color: #f0ad4e;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .shop-button:hover {
+      background-color: #ec971f;
+    }
+  </style>
+  <body>
+    <div id="overlay" class="overlay"></div>
+
+    <section class="section-1">
+      <article>
+        <img src="images/skincare (1).jpg" alt="Skincare Product 1" />
+        <h3>Lorem ipsum dolor sit amet.</h3>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <h4><span>$140.00</span> $99.00</h4>
+        <button
+          onclick="addToCart('Skincare Product 1', 99.00, 'images/skincare (1).jpg')"
+        >
+          Add to Cart
+        </button>
+      </article>
+      <!-- Repeat for more products -->
+    </section>
+
+    <button class="cart-button" onclick="toggleCart()">
+      View Cart <span id="cart-count">0</span>
+    </button>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+      <div class="cart-header">
+        <h2>Shopping Cart</h2>
+        <button class="close-cart" onclick="toggleCart()">X</button>
+      </div>
+      <ul id="cart-items"></ul>
+      <p>Total: $<span id="cart-total">0.00</span></p>
+      <button onclick="checkout()" class="checkout-button">Checkout</button>
+      <div class="empty-cart" id="empty-cart" style="display: none">
+        <p>Your cart is empty.</p>
+        <a href="shop.html" class="shop-button">Shop Now</a>
+      </div>
+    </div>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      function addToCart(productName, productPrice, productImage) {
+        const product = cart.find((item) => item.name === productName);
+        if (product) {
+          product.quantity++;
+        } else {
+          cart.push({
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1,
+          });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+        updateCartCount();
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+        updateCartCount();
+      }
+
+      function increaseQuantity(index) {
+        cart[index].quantity++;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+      }
+
+      function decreaseQuantity(index) {
+        if (cart[index].quantity > 1) {
+          cart[index].quantity--;
+        } else {
+          cart.splice(index, 1);
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+        updateCartCount();
+      }
+
+      function updateCartDisplay() {
+        const cartItemsContainer = document.getElementById("cart-items");
+        const cartTotalContainer = document.getElementById("cart-total");
+        const emptyCartMessage = document.getElementById("empty-cart");
+
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+          emptyCartMessage.style.display = "block";
+        } else {
+          emptyCartMessage.style.display = "none";
+
+          cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+              <img src="${item.image}" alt="${
+              item.name
+            }" style="width: 50px; height: 50px; object-fit: cover;">
+              ${item.name} - $${item.price.toFixed(2)}
+              <div class="quantity-buttons">
+                <button onclick="decreaseQuantity(${index})">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="increaseQuantity(${index})">+</button>
+              </div>
+              <button onclick="removeFromCart(${index})">Remove</button>
+            `;
+            cartItemsContainer.appendChild(li);
+            total += item.price * item.quantity;
+          });
+        }
+
+        cartTotalContainer.textContent = total.toFixed(2);
+      }
+
+      function toggleCart() {
+        const cartSidebar = document.getElementById("cart-sidebar");
+        const overlay = document.getElementById("overlay");
+        const body = document.body;
+
+        if (cartSidebar.classList.contains("open")) {
+          cartSidebar.classList.remove("open");
+          overlay.classList.remove("show");
+          body.style.overflow = "auto";
+        } else {
+          cartSidebar.classList.add("open");
+          overlay.classList.add("show");
+          body.style.overflow = "hidden";
+        }
+      }
+
+      function updateCartCount() {
+        const cartCount = document.getElementById("cart-count");
+        cartCount.textContent = cart.reduce(
+          (acc, item) => acc + item.quantity,
+          0
+        );
+      }
+
+      function checkout() {
+        window.location.href = "checkout.html";
+      }
+
+      updateCartDisplay();
+      updateCartCount();
+    </script>
+  </body>
+</html>
