@@ -64,7 +64,9 @@ function updateCartDisplay() {
     cart.forEach((item, index) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="${item.image}" alt="${
+        item.name
+      }" style="width: 100%; height: 100%; object-fit: cover;">
         ${item.name} - $${item.price.toFixed(2)}
         <div class="quantity-buttons">
           <button onclick="decreaseQuantity(${index})">-</button>
