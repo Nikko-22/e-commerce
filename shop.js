@@ -1,6 +1,11 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(productName, productPrice, productImage) {
+const saveCart = () => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+};
+
+const addToCart = (productName, productPrice, productImage) => {
   const product = cart.find((item) => item.name === productName);
   if (product) {
     product.quantity++;
@@ -12,37 +17,33 @@ function addToCart(productName, productPrice, productImage) {
       quantity: 1,
     });
   }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
-  updateCartCount();
-}
+};
 
-function removeFromCart(index) {
+const removeFromCart = (index) => {
   cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
-  updateCartCount();
-}
+};
 
-function increaseQuantity(index) {
+const increaseQuantity = (index) => {
   cart[index].quantity++;
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
-}
+};
 
-function decreaseQuantity(index) {
+const decreaseQuantity = (index) => {
   if (cart[index].quantity > 1) {
     cart[index].quantity--;
   } else {
     cart.splice(index, 1);
   }
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   updateCartDisplay();
-  updateCartCount();
-}
+};
 
-function updateCartDisplay() {
+const updateCartDisplay = () => {
   const cartItemsContainer = document.getElementById("cart-items");
   const cartTotalContainer = document.getElementById("cart-total");
   const emptyCartMessage = document.getElementById("empty-cart");
@@ -69,11 +70,11 @@ function updateCartDisplay() {
       }" style="width: 100%; height: 100%; object-fit: cover;">
         ${item.name} - $${item.price.toFixed(2)}
         <div class="quantity-buttons">
-          <button onclick="decreaseQuantity(${index})">-</button>
+          <button onclick="decreaseQuantity(${index})" class="qty-button">-</button>
           <span>${item.quantity}</span>
-          <button onclick="increaseQuantity(${index})">+</button>
+          <button onclick="increaseQuantity(${index})" class="qty-button">+</button>
         </div>
-        <button onclick="removeFromCart(${index})" style="padding:6px 10px; margin:10px 0; background:#c9184a; border:none; color:#fff; cursor:pointer; transition:background-color 0.3s ease;">Remove</button>
+        <button onclick="removeFromCart(${index})" class="remove-button" style="padding:6px 10px; margin:10px 0; background:#c9184a; border:none; color:#fff; cursor:pointer; transition:background-color 0.3s ease;">Remove</button>
       `;
       cartItemsContainer.appendChild(li);
       total += item.price * item.quantity;
@@ -81,9 +82,16 @@ function updateCartDisplay() {
   }
 
   cartTotalContainer.textContent = total.toFixed(2);
-}
 
-function toggleCart() {
+  // Prevent click event propagation on the quantity buttons and remove button
+  document.querySelectorAll(".qty-button, .remove-button").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  });
+};
+
+const toggleCart = () => {
   const cartSidebar = document.getElementById("cart-sidebar");
   const overlay = document.getElementById("overlay");
   const body = document.body;
@@ -97,17 +105,48 @@ function toggleCart() {
     overlay.classList.add("show");
     body.style.overflow = "hidden";
   }
-}
+};
 
-function updateCartCount() {
+const updateCartCount = () => {
   const cartCount = document.getElementById("cart-count");
   cartCount.textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
-}
+};
 
-function checkout() {
+const checkout = () => {
   window.location.href = "checkout.html";
-}
+};
 
+// Close the cart sidebar when clicking outside of it
+document.addEventListener("click", (event) => {
+  const cartSidebar = document.getElementById("cart-sidebar");
+  const overlay = document.getElementById("overlay");
+
+  if (
+    overlay.classList.contains("show") &&
+    !cartSidebar.contains(event.target) &&
+    !event.target.closest(".cart-button")
+  ) {
+    toggleCart();
+  }
+});
+
+// Ensure icon and span inside the cart button trigger the same function
+document.querySelector(".cart-button").addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleCart();
+});
+
+document
+  .querySelector(".fa-cart-shopping")
+  .addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleCart();
+  });
+
+document.querySelector("#cart-count").addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleCart();
+});
 
 updateCartDisplay();
 updateCartCount();
