@@ -46,21 +46,25 @@ function updateCartDisplay() {
   const cartItemsContainer = document.getElementById("cart-items");
   const cartTotalContainer = document.getElementById("cart-total");
   const emptyCartMessage = document.getElementById("empty-cart");
+  const checkoutButton = document.querySelector(".checkout-button");
+  const viewCartButton = document.querySelector(".checkout-button2");
 
   cartItemsContainer.innerHTML = "";
   let total = 0;
 
   if (cart.length === 0) {
     emptyCartMessage.style.display = "block";
+    checkoutButton.style.display = "none";
+    viewCartButton.style.display = "none";
   } else {
     emptyCartMessage.style.display = "none";
+    checkoutButton.style.display = "block";
+    viewCartButton.style.display = "block";
 
     cart.forEach((item, index) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        <img src="${item.image}" alt="${
-        item.name
-      }" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">
         ${item.name} - $${item.price.toFixed(2)}
         <div class="quantity-buttons">
           <button onclick="decreaseQuantity(${index})">-</button>
