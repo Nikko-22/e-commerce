@@ -78,11 +78,22 @@ header img {
 }
 
 .cart-button {
-  padding: 0.625rem 1.25rem;
-  background-color: #c9184a;
+  display: contents;
+  padding: 0;
+  margin: 0;
+  background-color: var(--accent);
   color: #fff;
   border: none;
   cursor: pointer;
+
+  & i {
+    font-size: large;
+    padding: 0.5rem;
+  }
+
+  & span {
+    padding-left: 0.5rem;
+  }
 }
 
 .empty-cart {
@@ -344,7 +355,7 @@ nav ul {
 .section-1 .below {
   padding: 1.25rem;
   display: flex;
-  flex-wrap: wrap;
+
   gap: 2rem;
 }
 
@@ -608,6 +619,9 @@ footer {
 }
 
 @media (min-width: 20rem) {
+  .section-1 .below {
+    flex-direction: column;
+  }
   .h-text {
     font-size: 3rem;
   }
@@ -727,6 +741,9 @@ footer {
   }
 }
 @media (min-width: 48rem) {
+  .section-1 .below {
+    flex-direction: row;
+  }
   .h-text {
     font-size: 6.8rem;
   }
